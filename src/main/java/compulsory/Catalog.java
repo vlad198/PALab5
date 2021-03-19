@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public @Data
@@ -12,7 +13,7 @@ public @Data
 class Catalog implements Serializable {
     private String name;
     private String path;
-    private transient List<Item> items = new ArrayList<>();
+    private List<Item> items = new LinkedList<>();
 
     public Catalog(String name, String path) {
         this.name = name;
@@ -60,7 +61,7 @@ class Catalog implements Serializable {
 
         this.name = copie.getName();
         this.path = copie.getPath();
-//        this.items = copie.getItems();
+        this.items = copie.getItems();
 
         System.out.println("mergeeee");
     }
