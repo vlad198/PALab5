@@ -3,6 +3,7 @@ package compulsory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -64,6 +65,10 @@ class Catalog implements Serializable {
         this.items = copie.getItems();
 
         System.out.println("mergeeee");
+    }
+
+    public void play(int index) throws IOException {
+        Desktop.getDesktop().open(new File(items.get(index).getPath()));
     }
 
 
