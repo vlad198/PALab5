@@ -1,23 +1,41 @@
 package compulsory;
 
+import compulsory.catalog.Catalog;
+import compulsory.exceptions.NotAPathException;
+import compulsory.items.Book;
+import compulsory.items.Movie;
+import compulsory.items.Song;
+
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Catalog catalog = new Catalog("catalogue_meu", System.getProperty("user.dir").toString());
-//
-//        catalog.add(new Song("melodia 1", "D:\\Udemy-Advanced.JavaScript.Concepts\\3. Javascript Foundation II\\2. Execution Context.mp4", "Chelutu cu bradutu", "Dorel"));
-//        catalog.add(new Song("catalog.mp3", System.getProperty("user.dir").toString() + "catalog.mp3", "catalog", "Niai"));
-//
-//        catalog.list();
-//        catalog.save();
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
-        catalog.load("catalogue_meu.ser");
-        catalog.play(0);
+    public static void main(String[] args) {
 
-        System.out.println(catalog);
+        try {
+            Catalog catalog = new Catalog("catalogue_meu", System.getProperty("user.dir").toString() + "\\catalogues");
 
-//        System.out.println(catalog.getPath());
+            catalog.add(new Song("song", System.getProperty("user.dir").toString() + "\\project_resources" + "\\song.mp3", "catalog", "author"));
+            catalog.add(new Movie("movie", System.getProperty("user.dir").toString() + "\\project_resources" + "\\movie.mp4", "intellij", "Eu"));
+            catalog.add(new Book("book", System.getProperty("user.dir").toString() + "\\project_resources" + "\\book.pdf", "book", "me"));
+
+            catalog.save();
+            catalog.load("catalogue_meu");
+
+            catalog.getItems().get(0).play();
+            catalog.getItems().get(1).play();
+            catalog.getItems().get(2).play();
+
+            catalog.list();
+        } catch (ClassNotFoundException classNotFoundException) {
+            logger.info("ClassNotFoundException:" + classNotFoundException);
+        } catch (IOException ioException) {
+            logger.info("IOException: " + ioException);
+        }
+
+
     }
 
 }

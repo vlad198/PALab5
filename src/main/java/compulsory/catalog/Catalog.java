@@ -1,17 +1,21 @@
-package compulsory;
+package compulsory.catalog;
 
+import compulsory.Main;
+import compulsory.items.Item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public @Data
 @AllArgsConstructor
 class Catalog implements Serializable {
+    private static final Logger logger = Logger.getLogger(Catalog.class.getName());
+
     private String name;
     private String path;
     private List<Item> items = new LinkedList<>();
@@ -41,35 +45,27 @@ class Catalog implements Serializable {
 
     public void list() {
         for (Item item : items)
-            System.out.println(item);
+            logger.info("item: " + item);
     }
 
     public void save() throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream(System.getProperty("user.dir").toString() + "/catalogues/" + name + ".ser");
+        FileOutputStream fileOutputStream = new FileOutputStream(getPath() + "\\" + name + ".ser");
         ObjectOutputStream out = new ObjectOutputStream(fileOutputStream);
         out.writeObject(this);
 
         fileOutputStream.close();
         out.close();
-        System.out.println("mergeeee");
     }
 
     public void load(String catalogName) throws IOException, ClassNotFoundException {
-        FileInputStream  fileIn  = new FileInputStream (System.getProperty("user.dir").toString() + "/catalogues/" + name + ".ser");
-        ObjectInputStream  in = new ObjectInputStream (fileIn);
+        FileInputStream fileIn = new FileInputStream(System.getProperty("user.dir").toString() + "/catalogues/" + catalogName + ".ser");
+        ObjectInputStream in = new ObjectInputStream(fileIn);
 
-        Catalog copie = (Catalog) in.readObject();
+        Catalog copy = (Catalog) in.readObject();
 
-        this.name = copie.getName();
-        this.path = copie.getPath();
-        this.items = copie.getItems();
-
-        System.out.println("mergeeee");
+        this.name = copy.getName();
+        this.path = copy.getPath();
+        this.items = copy.getItems();
     }
-
-    public void play(int index) throws IOException {
-        Desktop.getDesktop().open(new File(items.get(index).getPath()));
-    }
-
 
 }
