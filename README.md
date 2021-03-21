@@ -53,6 +53,9 @@ Write an application that can manage a catalog of multimedia items. An entry in 
     - load: loads the catalog from an external file.
 - [x] The application will signal invalid data (year, path, etc.) using a custom exception.
 
+![](readme_images/compulsory_example_1_instance.png)
+![](readme_images/compulsory_example_1_result.png)
+
 ### Optional
 To be continued...
 ### Bonus
