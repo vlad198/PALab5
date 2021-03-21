@@ -34,8 +34,5 @@ public class Main {
         } catch (IOException ioException) {
             logger.info("IOException: " + ioException);
         }
-
-
     }
-
 }
