@@ -1,5 +1,6 @@
 package optional.commands;
 
+import freemarker.template.TemplateException;
 import optional.catalog.Catalog;
 import lombok.*;
 import optional.exceptions.NotACommandException;
@@ -22,7 +23,7 @@ public class CommandsList implements Serializable {
         commands.put(name, command);
     }
 
-    public void runCommand(Command command, Catalog catalog, ItemsList itemsList) throws IOException, NotACommandException {
+    public void runCommand(Command command, Catalog catalog, ItemsList itemsList) throws IOException, NotACommandException, TemplateException {
         if(commands.containsKey(command.getCommandName())){
             commands.get(command.getCommandName()).executeCommand(command.getCommandArgs(),catalog,itemsList);
         }

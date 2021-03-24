@@ -1,5 +1,6 @@
 package optional;
 
+import freemarker.template.TemplateException;
 import optional.catalog.Catalog;
 import optional.commands.*;
 import optional.exceptions.NotACommandException;
@@ -7,6 +8,7 @@ import optional.items.Book;
 import optional.items.ItemsList;
 import optional.items.Movie;
 import optional.items.Song;
+import org.apache.log4j.BasicConfigurator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +19,8 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
+        BasicConfigurator.configure();
+
         Catalog catalog = new Catalog("catalogue_meu", System.getProperty("user.dir").toString() + "\\catalogues");
 
         // ItemsList
@@ -42,7 +46,7 @@ public class Main {
         while (true) {
             try {
                 commandsList.runCommand(new Command(reader.readLine()), catalog, itemsList);
-            } catch (NotACommandException e) {
+            } catch (NotACommandException | TemplateException e) {
                 logger.warning("NotACommandException: " + e.getMessage());
             }
         }
