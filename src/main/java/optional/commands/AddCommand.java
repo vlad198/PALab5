@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * Class that describes a command which can add a new item to given  catalog
+ * Class that describes a command which can add a new item to given catalogue.
  */
 public class AddCommand implements isExecutable {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());

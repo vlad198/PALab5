@@ -8,12 +8,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
-public @Getter
+/**
+ * Abstract class the describes a generic item in our catalogue.
+ */
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-abstract class Item implements Serializable {
+public abstract class Item implements Serializable {
     private String id;
     private String name;
     private String path;

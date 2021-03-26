@@ -16,6 +16,12 @@ import java.util.logging.Logger;
 public class PlayCommand implements isExecutable {
     private static final Logger logger = Logger.getLogger(PlayCommand.class.getName());
 
+    /**
+     * This function searches an item in a list of items
+     * @param name the search criteria: search by the name of the item
+     * @param catalogItemList the list of items in which we want to search the item with the given name
+     * @return the item if it finds it, otherwise null.
+     */
     private Item findByName(String name, List<Item> catalogItemList) {
         for (Item item : catalogItemList) {
             if (item.getName().equals(name))

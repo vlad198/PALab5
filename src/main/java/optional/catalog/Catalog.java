@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public @Data
-class Catalog implements Serializable {
+/**
+ * Class that describes the catalogue of the application.
+ */
+@Data
+public class Catalog implements Serializable {
     private String name;
     private String path;
     private List<Item> items = new LinkedList<>();
