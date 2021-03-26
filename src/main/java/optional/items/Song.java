@@ -13,12 +13,15 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that describes a 'song item' in our catalogue.
+ */
 @EqualsAndHashCode(callSuper = true)
-public @Data
+@Data
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-class Song extends Item implements CanRegenerate<Song>, Serializable {
+public class Song extends Item implements CanRegenerate<Song>, Serializable {
     private List<String> authors = new LinkedList<>();
     private String songName;
 
@@ -34,6 +37,10 @@ class Song extends Item implements CanRegenerate<Song>, Serializable {
         this.authors = new LinkedList<>(authors);
     }
 
+    /**
+     * Method that play a song if it has the audio format.
+     * @throws IOException exception
+     */
     public void play() throws IOException {
         File f = new File(getPath());
 

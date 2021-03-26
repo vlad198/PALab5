@@ -9,6 +9,7 @@ import optional.items.ItemsList;
 import optional.items.Movie;
 import optional.items.Song;
 import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.varia.NullAppender;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
-        BasicConfigurator.configure();
+        BasicConfigurator.configure(new NullAppender());
 
         Catalog catalog = new Catalog("catalogue_meu", System.getProperty("user.dir").toString() + "\\catalogues");
 
@@ -39,6 +40,7 @@ public class Main {
         commandsList.add("play", new PlayCommand());
         commandsList.add("save", new SaveCommand());
         commandsList.add("report", new ReportCommand());
+        commandsList.add("load",new LoadCommand());
 
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -46,8 +48,8 @@ public class Main {
         while (true) {
             try {
                 commandsList.runCommand(new Command(reader.readLine()), catalog, itemsList);
-            } catch (NotACommandException | TemplateException e) {
-                logger.warning("NotACommandException: " + e.getMessage());
+            } catch (NotACommandException | TemplateException | ClassNotFoundException e) {
+                logger.warning("Exception: " + e.getMessage());
             }
         }
 

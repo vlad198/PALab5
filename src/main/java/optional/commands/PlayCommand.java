@@ -1,5 +1,6 @@
 package optional.commands;
 
+import optional.Main;
 import optional.items.Item;
 import optional.catalog.Catalog;
 import optional.items.ItemsList;
@@ -7,8 +8,13 @@ import optional.items.ItemsList;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
+/**
+ * Class that describes the play command in our shell.
+ */
 public class PlayCommand implements isExecutable {
+    private static final Logger logger = Logger.getLogger(PlayCommand.class.getName());
 
     private Item findByName(String name, List<Item> catalogItemList) {
         for (Item item : catalogItemList) {
@@ -26,6 +32,6 @@ public class PlayCommand implements isExecutable {
         if (item != null)
             item.play();
 
-        System.out.println("play");
+        logger.info("play");
     }
 }

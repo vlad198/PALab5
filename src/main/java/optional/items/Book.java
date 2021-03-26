@@ -13,12 +13,15 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that describes a 'book item' in our catalog.
+ */
 @EqualsAndHashCode(callSuper = true)
-public @Data
+@Data
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-class Book extends Item implements CanRegenerate<Book>, Serializable {
+public class Book extends Item implements CanRegenerate<Book>, Serializable {
     private List<String> authors = new LinkedList<>();
     private String bookName;
 
@@ -34,6 +37,10 @@ class Book extends Item implements CanRegenerate<Book>, Serializable {
         this.authors = new LinkedList<>(authors);
     }
 
+    /**
+     * Method that opens the book if it's in pdf format.
+     * @throws IOException exception
+     */
     @Override
     public void play() throws IOException {
         File f = new File(getPath());

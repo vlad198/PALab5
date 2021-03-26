@@ -15,6 +15,9 @@ import java.util.*;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Class that describes the play command in our shell.
+ */
 public class ReportCommand implements isExecutable {
     private static final Logger logger = Logger.getLogger(ReportCommand.class.getName());
 

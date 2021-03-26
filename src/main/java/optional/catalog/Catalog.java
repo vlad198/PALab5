@@ -21,6 +21,10 @@ class Catalog implements Serializable {
         this.items = new LinkedList<>();
     }
 
+    /**
+     * This function adds a new item in the current catalog
+     * @param item the item to be added
+     */
     public void add(Item item) {
         items.add(item);
     }
