@@ -12,12 +12,15 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that describes a 'movie item' in our catalog.
+ */
 @EqualsAndHashCode(callSuper = true)
-public @Data
+@Data
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-class Movie extends Item implements CanRegenerate<Movie>, Serializable {
+public class Movie extends Item implements CanRegenerate<Movie>, Serializable {
     private List<String> movieDirectors = new LinkedList<>();
     private String movieName;
 
@@ -33,6 +36,10 @@ class Movie extends Item implements CanRegenerate<Movie>, Serializable {
         this.movieDirectors = new LinkedList<>(movieDirectors);
     }
 
+    /**
+     * Method that plays a movie if it has the video format
+     * @throws IOException exception
+     */
     public void play() throws IOException {
         File f = new File(getPath());
 

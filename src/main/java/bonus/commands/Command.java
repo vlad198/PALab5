@@ -8,6 +8,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that describes a generic command
+ */
 @EqualsAndHashCode
 @Getter
 public class Command implements Serializable {

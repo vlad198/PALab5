@@ -8,15 +8,18 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.UUID;
 
-public @Getter
+/**
+ * Abstract class the describes a generic item in our catalogue.
+ */
+@Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-abstract class Item implements Serializable {
-    private String id;
-    private String name;
-    private String path;
+public abstract class Item implements Serializable {
+    protected String id;
+    protected String name;
+    protected String path;
 
     public Item(String name, String path) {
         this.id = UUID.randomUUID().toString();

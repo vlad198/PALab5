@@ -7,8 +7,11 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public @Data
-class Catalog implements Serializable {
+/**
+ * Class that describes the catalogue of the application.
+ */
+@Data
+public class Catalog implements Serializable {
     private String name;
     private String path;
     private List<Item> items = new LinkedList<>();
@@ -19,6 +22,10 @@ class Catalog implements Serializable {
         this.items = new LinkedList<>();
     }
 
+    /**
+     * This function adds a new item in the current catalog
+     * @param item the item to be added
+     */
     public void add(Item item) {
         items.add(item);
     }
